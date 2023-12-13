@@ -27,10 +27,20 @@ $(document).ready(function(){
 
   //save button saves to local storage 
   $(".saveBtn").on("click", function(){
-    var descriptin = $(this).siblings(".description").val();
-
+    var description = $(this).siblings(".description").val();
     //look for the parent element of the button 
     const timeBlockId= $(this).closest(".time-block").attr("id");
+
+    //saves the id and text input content
+    if (description.trim() !== "") {
+      const dataTosave = {
+        description: description,
+        timeBlockId: timeBlockId,
+      };
+      // make data to string to save to local storage
+      localStorage.setItem(timeBlockId, JSON.stringify(dataTosave));
+
+    }
 
     // print id to console just to confirm
     console.log("time block ID:", timeBlockId);
